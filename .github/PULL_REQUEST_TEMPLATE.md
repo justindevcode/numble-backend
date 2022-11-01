@@ -1,8 +1,8 @@
 # PR명
 
 <!--
-  제목은 `([티켓명]) (키워드): (작업한 내용)` 으로 작성해 주세요
-  키워드 예시: [TICKET-46] fix: jasypt gradle build시 systemProperties 가져오도록 설정
+  제목은 `([NUMBLE-숫자]) (키워드): (작업한 내용)` 으로 작성해 주세요
+  키워드 예시: [NUMBLE-46] fix: jasypt gradle build시 systemProperties 가져오도록 설정
 -->
 
 <br>
@@ -38,7 +38,7 @@
 <!--
   (Optional)
   이 PR과 연관되어있는 에픽 링크, 연관되어있는 QA 이슈 등을 기입합니다.
-  예) - 에픽 티켓: TICKET-9999
+  예) - : NUMBLE-9999
 -->
 
 <br>
