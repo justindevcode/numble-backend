@@ -8,3 +8,11 @@ spring:
     username: sa
     password:
     url: jdbc:h2:tcp://localhost/~/numble
+
+logging:
+  file:
+    path: ./log/numble
+    name: numble-log
+  pattern:
+    console: "%logger{36}.%M \\(%line\\) - %msg%n"
+    file: "[%d{HH:mm:ss}] %-3level %logger{5} - %msg %n"
