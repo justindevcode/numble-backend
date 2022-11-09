@@ -1,6 +1,7 @@
 package com.community.numble.app.user.service;
 
 import com.community.numble.app.user.bean.UserBean;
+import com.community.numble.app.user.dto.UserCreateDto;
 import com.community.numble.app.user.repository.UserRepository;
 import com.community.numble.common.response.ResponseMessage;
 import com.community.numble.exception.LoginFailedException;
@@ -39,5 +40,10 @@ public class UserService implements UserDetailsService {
         userBean.setAuthorities(authorities);
 
         return userBean;
+    }
+
+    public void join(UserCreateDto userCreateDto) {
+        UserBean userBean = userCreateDto.toEntity();
+        userRepository.save(userBean);
     }
 }

@@ -35,10 +35,10 @@ public class UserBean implements UserDetails {
     @Column(name = "user_id")
     private long userId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nickname;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable = false)
@@ -97,6 +97,5 @@ public class UserBean implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 
 }

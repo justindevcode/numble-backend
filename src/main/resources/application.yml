@@ -26,3 +26,8 @@ logging:
   pattern:
     console: "%logger{36}.%M \\(%line\\) - %msg%n"
     file: "[%d{HH:mm:ss}] %-3level %logger{5} - %msg %n"
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
