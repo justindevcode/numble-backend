@@ -38,6 +38,5 @@ public class Post extends Time{
 	public void setMember(Member member){
 		this.member = new Member();
 		member.getPosts().add(this);
-
 	}
 }
