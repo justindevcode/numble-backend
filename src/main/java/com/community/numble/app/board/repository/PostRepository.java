@@ -30,4 +30,9 @@ public class PostRepository {
 			.setParameter("member",member).getResultList();
 	}
 
+	public List<Post> findByLocation(String location) {
+		return em.createQuery("select p from Post p where p.location = :location", Post.class)
+			.setParameter("location", location).getResultList();
+	}
+
 }

@@ -34,4 +34,8 @@ public class PostService {
 
 	}
 
+	public List<Post> findPostLocation(String location){
+		return postRepository.findByLocation(location);
+	}
+
 }

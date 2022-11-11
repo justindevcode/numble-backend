@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
-
 @Entity
 @Getter @Setter
 public class Post extends Time{
@@ -23,6 +24,11 @@ public class Post extends Time{
 
 	private String title;
 	private String content;
+
+	private String location;
+
+	@Enumerated(EnumType.STRING)
+	private PostCategory type;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "member_id")
