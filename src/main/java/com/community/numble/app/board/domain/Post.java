@@ -34,8 +34,8 @@ public class Post extends Time{
 	private List<UploadFile> uploadFile = new ArrayList<>();
 
 
-	@Enumerated(EnumType.STRING)
-	private PostCategory type;
+
+	private String type;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "member_id")
@@ -56,7 +56,7 @@ public class Post extends Time{
 
 
 	public void createType(String type){
-		if ("NEW".equals(type)) this.setType(PostCategory.NEW);
+		if ("NEW".equals(type)) this.setType(PostCategory.NEW.getValue());
 		else if("EVENT".equals(type)) this.setType(PostCategory.EVENT);
 		else if("SAIL".equals(type)) this.setType(PostCategory.SAIL);
 		else if("MEETING".equals(type)) this.setType(PostCategory.MEETING);
