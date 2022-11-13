@@ -35,6 +35,8 @@ dependencies {
 
     implementation 'com.h2database:h2'
 
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter'
+
 }
 
 tasks.named('test') {
