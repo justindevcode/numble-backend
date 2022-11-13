@@ -2,8 +2,10 @@ package com.community.numble.app.board.dto;
 
 import com.community.numble.app.board.domain.Member;
 import com.community.numble.app.board.domain.PostCategory;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 public class PostDto {
 
@@ -67,6 +69,34 @@ public class PostDto {
 		private Long memberId;
 
 	}
+
+
+	@Data
+	public static class CreatePostPhotoResponse {
+		private Long id;
+
+		public CreatePostPhotoResponse(Long id) {
+			this.id = id;
+		}
+	}
+
+	@Data
+	public static class CreatePostPhotoRequest{
+
+		private String title;
+		private String content;
+		//private List<MultipartFile> imageFiles;
+
+
+		private String location;
+
+		private Long member;
+
+		private String type;
+	}
+
+
+
 
 
 

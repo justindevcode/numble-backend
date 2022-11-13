@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 @Entity
@@ -28,6 +29,10 @@ public class Post extends Time{
 	private String content;
 
 	private String location;
+
+	@OneToMany(mappedBy = "post")
+	private List<UploadFile> uploadFile = new ArrayList<>();
+
 
 	@Enumerated(EnumType.STRING)
 	private PostCategory type;
@@ -48,6 +53,8 @@ public class Post extends Time{
 		member.getPosts().add(this);
 	}
 
+
+
 	public void createType(String type){
 		if ("NEW".equals(type)) this.setType(PostCategory.NEW);
 		else if("EVENT".equals(type)) this.setType(PostCategory.EVENT);
@@ -58,4 +65,6 @@ public class Post extends Time{
 		else throw new IllegalStateException("잘못된 카테고리정보 입니다.");
 		
 	}
+
+
 }
