@@ -1,6 +1,6 @@
 package com.community.numble.app.user.dto;
 
-import com.community.numble.app.user.bean.UserBean;
+import com.community.numble.app.user.domain.User;
 import com.community.numble.common.utils.DateUtils;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
@@ -24,9 +24,9 @@ public class UserCreateDto {
 
     private String location;
 
-    public UserBean toEntity() {
+    public User toEntity() {
 
-        return UserBean.builder()
+        return User.builder()
             .username(username)
             .nickname(nickname)
             .password(password)

@@ -1,4 +1,4 @@
-package com.community.numble.app.user.bean;
+package com.community.numble.app.user.domain;
 
 import java.util.Collection;
 import java.util.List;
@@ -28,7 +28,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor
 @Entity
-public class UserBean implements UserDetails {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,7 +48,7 @@ public class UserBean implements UserDetails {
     private String password;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<RoleBean> role;
+    private List<Role> role;
 
     @Column(nullable = false)
     private String location;
