@@ -1,10 +1,6 @@
 package com.community.numble.app.board.controller;
 
 import com.community.numble.app.board.domain.Post;
-import com.community.numble.app.board.domain.UploadFile;
-import com.community.numble.app.board.dto.PostDto;
-import com.community.numble.app.board.dto.PostDto.CreatePostPhotoRequest;
-import com.community.numble.app.board.dto.PostDto.CreatePostPhotoResponse;
 import com.community.numble.app.board.dto.PostDto.CreatePostRequest;
 import com.community.numble.app.board.dto.PostDto.CreatePostResponse;
 import com.community.numble.app.board.dto.PostDto.PostAllDto;
@@ -24,11 +20,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/api/v1") //버전명시(이전버전도 사용 분리)
 public class PostApiController {
 
 	private final PostService postService;
@@ -60,7 +58,7 @@ public class PostApiController {
 //	@PostMapping("/numble11/post/photo")
 //	public ResponseEntity savePostPhoto(@RequestPart(value = "postinfo") CreatePostPhotoRequest request,
 //		@RequestPart(value = "file") MultipartFile imageFiles) {
-//
+//업로드기능 service로 분리 DTO service로
 //		String uploadFolder = "C:\\Users\\aa\\Desktop\\numble11\\backend\\src\\main\\resources\\media\\postUplode";
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //		Date date = new Date();
@@ -102,6 +100,7 @@ public class PostApiController {
 //		return ResponseEntity.status(HttpStatus.ACCEPTED).body(new CreatePostPhotoResponse(id));
 //	}
 
+	//파일명 파일경로:타입,날짜별 파일타입 저장되는다른파일이름:UUID바뀐거도 저장 , 확장자 ,파일사이즈,생성날자,수정날짜
 
 
 }
