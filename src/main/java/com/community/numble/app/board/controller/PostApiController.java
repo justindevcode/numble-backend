@@ -57,50 +57,50 @@ public class PostApiController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(new PostResult(collect.size(),collect));
 	}
 
-	@PostMapping("/numble11/post/photo")
-	public ResponseEntity savePostPhoto(@RequestPart(value = "postinfo") CreatePostPhotoRequest request,
-		@RequestPart(value = "file") MultipartFile imageFiles) {
-
-		String uploadFolder = "C:\\Users\\aa\\Desktop\\numble11\\backend\\src\\main\\resources\\media\\postUplode";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		String str = sdf.format(date);
-		String datePath = str.replace("-", File.separator);
-		File uploadPath = new File(uploadFolder, datePath);
-		if(uploadPath.exists() == false) {
-			uploadPath.mkdirs();
-		}
-		Post post = new Post();
-		post.setTitle(request.getTitle());
-		post.setContent(request.getContent());
-		post.setLocation(request.getLocation());
-		post.createType(request.getType());
-		post.setMember(memberService.findOne(request.getMember()));
-
-
-		for(MultipartFile multipartFile : imageFiles????){
-			String uploadFileName = multipartFile.getOriginalFilename();
-			UploadFile uploadFile = new UploadFile();
-			uploadFile.setPost(post);
-
-
-			/* 파일 위치, 파일 이름을 합친 File 객체 */
-			File saveFile = new File(uploadPath, uploadFileName);
-
-			/* 파일 저장 */
-			try {
-				multipartFile.transferTo(saveFile);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		Long id = postService.post(post);
-
-
-
-
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(new CreatePostPhotoResponse(id));
-	}
+//	@PostMapping("/numble11/post/photo")
+//	public ResponseEntity savePostPhoto(@RequestPart(value = "postinfo") CreatePostPhotoRequest request,
+//		@RequestPart(value = "file") MultipartFile imageFiles) {
+//
+//		String uploadFolder = "C:\\Users\\aa\\Desktop\\numble11\\backend\\src\\main\\resources\\media\\postUplode";
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		Date date = new Date();
+//		String str = sdf.format(date);
+//		String datePath = str.replace("-", File.separator);
+//		File uploadPath = new File(uploadFolder, datePath);
+//		if(uploadPath.exists() == false) {
+//			uploadPath.mkdirs();
+//		}
+//		Post post = new Post();
+//		post.setTitle(request.getTitle());
+//		post.setContent(request.getContent());
+//		post.setLocation(request.getLocation());
+//		post.createType(request.getType());
+//		post.setMember(memberService.findOne(request.getMember()));
+//
+//
+//		for(MultipartFile multipartFile : imageFiles????){
+//			String uploadFileName = multipartFile.getOriginalFilename();
+//			UploadFile uploadFile = new UploadFile();
+//			uploadFile.setPost(post);
+//
+//
+//			/* 파일 위치, 파일 이름을 합친 File 객체 */
+//			File saveFile = new File(uploadPath, uploadFileName);
+//
+//			/* 파일 저장 */
+//			try {
+//				multipartFile.transferTo(saveFile);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		Long id = postService.post(post);
+//
+//
+//
+//
+//		return ResponseEntity.status(HttpStatus.ACCEPTED).body(new CreatePostPhotoResponse(id));
+//	}
 
 
 
