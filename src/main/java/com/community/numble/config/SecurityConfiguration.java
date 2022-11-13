@@ -16,7 +16,7 @@ public class SecurityConfiguration {
 
         http
             .authorizeRequests()
-            .antMatchers("/").permitAll()
+            .antMatchers("/login", "**/user/join").permitAll()
             .anyRequest().authenticated();
 
         http

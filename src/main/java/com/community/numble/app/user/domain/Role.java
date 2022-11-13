@@ -1,4 +1,4 @@
-package com.community.numble.app.user.bean;
+package com.community.numble.app.user.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Table(name="ROLE_TABLE")
 @Entity
-public class RoleBean {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

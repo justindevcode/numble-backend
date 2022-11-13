@@ -1,6 +1,6 @@
 package com.community.numble.app.user.service;
 
-import com.community.numble.app.user.bean.UserBean;
+import com.community.numble.app.user.domain.User;
 import com.community.numble.app.user.dto.UserCreateDto;
 import com.community.numble.app.user.repository.UserRepository;
 import com.community.numble.common.response.ResponseMessage;
@@ -27,23 +27,23 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        UserBean userBean = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
 
-        if (ObjectUtils.isEmpty(userBean)) {
+        if (ObjectUtils.isEmpty(user)) {
             throw new LoginFailedException(ResponseMessage.AUTH_USER.getMessage());
         }
 
-        final Collection<GrantedAuthority> authorities = userBean.getRole().stream().map(
+        final Collection<GrantedAuthority> authorities = user.getRole().stream().map(
             role -> new SimpleGrantedAuthority(role.getRole()))
             .collect(Collectors.toList());
 
-        userBean.setAuthorities(authorities);
+        user.setAuthorities(authorities);
 
-        return userBean;
+        return user;
     }
 
     public void join(UserCreateDto userCreateDto) {
-        UserBean userBean = userCreateDto.toEntity();
-        userRepository.save(userBean);
+        User user = userCreateDto.toEntity();
+        userRepository.save(user);
     }
 }

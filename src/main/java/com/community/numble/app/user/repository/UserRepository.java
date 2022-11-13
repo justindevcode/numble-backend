@@ -1,11 +1,11 @@
 package com.community.numble.app.user.repository;
 
 
-import com.community.numble.app.user.bean.UserBean;
+import com.community.numble.app.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<UserBean, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    UserBean findByUsername(String username);
+    User findByUsername(String username);
 
 }
