@@ -5,9 +5,9 @@ spring:
     active: local
   datasource:
     driver-class-name: org.h2.Driver
+    url: ENC(2p8Fem65AGKPMt3jefLYxI8+zc56BIX3cdB6tT3KYJrPlUbQaPKXVWvaCvFFJfkh)
     username: sa
     password:
-    url: jdbc:h2:tcp://localhost/~/numble
 
   jpa:
     properties:
