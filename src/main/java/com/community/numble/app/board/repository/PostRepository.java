@@ -35,4 +35,8 @@ public class PostRepository {
 			.setParameter("location", location).getResultList();
 	}
 
+	public void delete(Long id){
+
+	}
+
 }

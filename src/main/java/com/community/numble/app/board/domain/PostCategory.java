@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 public enum PostCategory {
-	NEW("새글"),EVENT("이벤트"),SAIL("할인"),MEETING("모임"),LOST("분실"),FREE("자유");
+	NEW("새로 생겼어요"),EVENT("행사/축제"),SAIL("세일/이벤트"),MEETING("소모임"),LOST("잃어버렸어요"),FREE("자유게시판");
 
 	String value;
 

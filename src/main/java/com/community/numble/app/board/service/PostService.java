@@ -38,4 +38,8 @@ public class PostService {
 		return postRepository.findByLocation(location);
 	}
 
+	public void deletePost(Long id){
+		postRepository.
+	}
+
 }

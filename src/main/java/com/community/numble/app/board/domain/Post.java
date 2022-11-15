@@ -30,7 +30,7 @@ public class Post extends Time{
 
 	private String location;
 
-	@OneToMany(mappedBy = "post")
+	@OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
 	private List<UploadFile> uploadFile = new ArrayList<>();
 
 
@@ -56,12 +56,12 @@ public class Post extends Time{
 
 
 	public void createType(String type){
-		if ("NEW".equals(type)) this.setType(PostCategory.NEW.getValue());
-		else if("EVENT".equals(type)) this.setType(PostCategory.EVENT);
-		else if("SAIL".equals(type)) this.setType(PostCategory.SAIL);
-		else if("MEETING".equals(type)) this.setType(PostCategory.MEETING);
-		else if("LOST".equals(type)) this.setType(PostCategory.LOST);
-		else if("FREE".equals(type)) this.setType(PostCategory.FREE);
+		if ("새로 생겼어요".equals(type)) this.setType(PostCategory.NEW.getValue());
+		else if("행사/축제".equals(type)) this.setType(PostCategory.EVENT.getValue());
+		else if("세일/이벤트".equals(type)) this.setType(PostCategory.SAIL.getValue());
+		else if("소모임".equals(type)) this.setType(PostCategory.MEETING.getValue());
+		else if("잃어버렸어요".equals(type)) this.setType(PostCategory.LOST.getValue());
+		else if("자유게시판".equals(type)) this.setType(PostCategory.FREE.getValue());
 		else throw new IllegalStateException("잘못된 카테고리정보 입니다.");
 		
 	}
