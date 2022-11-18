@@ -13,13 +13,18 @@ import com.community.numble.app.board.service.MemberService;
 import com.community.numble.app.board.service.PostService;
 import com.community.numble.app.board.service.UploadFileService;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.IOUtils;
 import org.springframework.expression.spel.ast.NullLiteral;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,6 +35,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -91,6 +97,7 @@ public class PostApiController {
 				String uploadFileName = multipartFile.getOriginalFilename();
 				UploadFile uploadFile = new UploadFile();
 				uploadFile.setImageFiles(uploadFileName);
+				uploadFile.setPath(uploadPath.getPath()+"\\"+uploadFileName);
 				uploadFile.setPost(post);
 
 
@@ -149,12 +156,13 @@ public class PostApiController {
 
 
 
+
 		if(!imageFiles[0].isEmpty()) {
-			System.out.println(imageFiles);
 			for (MultipartFile multipartFile : imageFiles) {
 				String uploadFileName = multipartFile.getOriginalFilename();
 				UploadFile uploadFile = new UploadFile();
 				uploadFile.setImageFiles(uploadFileName);
+				uploadFile.setPath(uploadPath.getPath()+"\\"+uploadFileName);
 				uploadFile.setPost(post);
 
 
@@ -178,6 +186,24 @@ public class PostApiController {
 
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(new CreatePostResponse(id));
 
+	}
+
+//	@GetMapping("/numble11/post/{id}")
+//	public ResponseEntity getOnePost(@PathVariable("id") Long currentid){
+//
+//	}
+
+	@GetMapping(
+		value = "/numble11/postimage/{id}",
+		produces = {MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE}
+	)
+	public @ResponseBody byte[] getImageWithMediaType(@PathVariable("id") Long imageid) throws IOException {
+
+		URL path = this.getClass().getResource("media/postUplode/2022/11/16/1.PNG");
+		InputStream in = this.getClass().getResourceAsStream("/media/postUplode/2022/11/16/1.PNG");
+		System.out.println(in);
+		return IOUtils.toByteArray(in);
+		//uploadFileService.findFilePath(imageid)
 	}
 
 

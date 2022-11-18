@@ -29,4 +29,8 @@ public class UploadFileService {
 
 	}
 
+	public String findFilePath(Long id){
+		return uploadFileRepository.findIdPath(id);
+	}
+
 }

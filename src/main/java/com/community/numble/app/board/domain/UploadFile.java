@@ -25,6 +25,7 @@ public class UploadFile {
 	@JoinColumn(name = "post_id")
 	private Post post;
 
+	private String path;
 	private String imageFiles;
 
 	public void setPost(Post post) {

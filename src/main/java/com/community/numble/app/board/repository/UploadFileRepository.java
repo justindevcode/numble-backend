@@ -26,4 +26,9 @@ public class UploadFileRepository {
 		return em.createQuery("select u from UploadFile u where u.post = :post",UploadFile.class)
 			.setParameter("post",post).getResultList();
 	}
+
+	public String findIdPath(Long id){
+		return em.createQuery("select u from UploadFile u where u.id = :id",UploadFile.class)
+			.setParameter("id",id).getSingleResult().getPath();
+	}
 }
