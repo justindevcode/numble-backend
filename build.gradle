@@ -41,6 +41,8 @@ dependencies {
 
     implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
 
+    implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.5'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
 tasks.named('test') {
