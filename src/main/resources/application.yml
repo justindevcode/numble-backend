@@ -1,18 +1,41 @@
 spring:
+  application:
+    name: backend
+  profiles:
+    active: local
   datasource:
-    url: jdbc:h2:tcp://localhost/~/numble11
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
-
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ENC(1KX2eCaflj6ajgwm6ldGhgwFIlU1023AkInhSrDpncoPJRMbf8a8Y6qr8rPWTWrU7CeGaV/9sXkuN+0416C42qy5lCZH7s4r371LMMrXpyk=)
+    username: ENC(k4WfV4exwYNosxz0AC0T7El92cK3GWa/)
+    password: ENC(h0Hy9BQqTkAHM2cJQeRV8NHsdYOvAG9ELvwbPlwG+Jo=)
   jpa:
-    hibernate:
-      ddl-auto: none
     properties:
       hibernate:
-        #        show_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        show_sql: true
         format_sql: true
+        use_sql_comments: true
+    hibernate:
+      ddl-auto: none
 
-logging.level:
-  org.hibernate.SQL: debug
-  org.hibernate.type : trace
+logging:
+  file:
+    path: ./log/numble
+    name: numble-log
+  pattern:
+    console: "%logger{36}.%M \\(%line\\) - %msg%n"
+    file: "[%d{HH:mm:ss}] %-3level %logger{5} - %msg %n"
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+springdoc:
+  api-docs:
+    version: openapi_3_0
+    path: /api-docs/json
+  swagger-ui:
+    path: /api-doc
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
