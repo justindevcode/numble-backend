@@ -17,7 +17,8 @@ public class SecurityConfiguration {
         http
             .authorizeRequests()
             .antMatchers("/login", "**/user/join").permitAll()
-            .anyRequest().authenticated();
+            .anyRequest().permitAll();
+        //permitAll(); local서버용
 
         http
             .formLogin();

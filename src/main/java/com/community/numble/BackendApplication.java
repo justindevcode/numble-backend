@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableJpaAuditing
 //시큐리티 해제
-@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+@SpringBootApplication //to do local서버용(e)
 public class BackendApplication {
 
     public static void main(String[] args) {
