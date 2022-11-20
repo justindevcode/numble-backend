@@ -1,6 +1,7 @@
 package com.community.numble.app.board.repository;
 
 import com.community.numble.app.board.domain.Comment;
+import com.community.numble.app.board.domain.Post;
 import java.util.List;
 import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -30,8 +31,13 @@ public class CommentRepository {
 	}
 
 	public List<Comment> findByPost(Long post) {
-		return em.createQuery("select c from Comment c where c.post = :post",Comment.class)
+		return em.createQuery("select c from Comment c where c.post.id = :post",Comment.class)
 			.setParameter("post",post).getResultList();
+	}
+
+	public void delete(Long id){
+		Comment comment = findOne(id);
+		em.remove(comment);
 	}
 
 }

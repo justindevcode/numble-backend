@@ -28,7 +28,7 @@ public class Member {
 	@OneToMany(mappedBy = "member")
 	private List<PostLike> postlikes = new ArrayList<>();
 
-	@OneToMany(mappedBy = "member")
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
 
 

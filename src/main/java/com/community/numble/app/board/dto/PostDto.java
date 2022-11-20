@@ -2,6 +2,7 @@ package com.community.numble.app.board.dto;
 
 import com.community.numble.app.board.domain.Member;
 import com.community.numble.app.board.domain.PostCategory;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -67,8 +68,27 @@ public class PostDto {
 		private String location;
 		private String type;
 		private Long memberId;
+		private Long firstImageId;
+		private LocalDateTime createTime;
+		private LocalDateTime modifiedTime;
 
 	}
+
+	@Data
+	@AllArgsConstructor
+	public static class PostOneDto {
+		private Long id;
+		private String title;
+		private String content;
+		private String location;
+		private String type;
+		private Long memberId;
+		private List<Long> allImageId;
+		private LocalDateTime createTime;
+		private LocalDateTime modifiedTime;
+
+	}
+
 
 
 	@Data

@@ -41,7 +41,7 @@ public class Post extends Time{
 	@JoinColumn(name = "member_id")
 	private Member member;
 
-	@OneToMany(mappedBy = "post")
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 	private List<Comment> comment = new ArrayList<>();
 
 	@OneToMany(mappedBy = "post")
