@@ -18,6 +18,18 @@ spring:
     hibernate:
       ddl-auto: none
 
+  mail:
+    host: smtp.naver.com
+    port: 465
+    username: # 아이디
+    properties:
+      mail:
+        smtp:
+          auth: true
+        ssl:
+          enable: true
+    password: # 비밀번호
+    protocol: smtps
 logging:
   file:
     path: ./log/numble
