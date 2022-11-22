@@ -56,3 +56,6 @@
 ### h2
 ![](https://velog.velcdn.com/images/witwint/post/55a22af1-7ff2-49c5-8c4b-58e7de79f089/image.PNG)
 
+### 디렉토리구조
+![](https://velog.velcdn.com/images/witwint/post/2309e6d0-c265-49eb-afd7-20984b06d353/image.png)
+
