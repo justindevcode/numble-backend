@@ -16,8 +16,13 @@ public class SecurityConfiguration {
 
         http
             .authorizeRequests()
-            .antMatchers("/login", "**/user/join").permitAll()
-            .anyRequest().permitAll();
+            .antMatchers( "/**").permitAll()
+            .antMatchers("/h2-console/**").permitAll() // 추가
+            .anyRequest().permitAll()
+            .and()
+                .csrf() // 추가
+                .ignoringAntMatchers("/h2-console/**").disable() // 추가
+                .httpBasic();
         //permitAll(); local서버용
 
         http

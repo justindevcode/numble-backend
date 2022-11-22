@@ -9,6 +9,8 @@ import com.community.numble.app.board.dto.CommentDto.CommentRequest;
 import com.community.numble.app.board.dto.CommentDto.CommentResponse;
 import com.community.numble.app.board.dto.CommentDto.CommentResult;
 import com.community.numble.app.board.service.CommentService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
+@Tag(name = "Comment", description = "댓글 api")
 @RequestMapping("/api/v1")
 public class CommentApiController {
 
@@ -33,11 +36,13 @@ public class CommentApiController {
 
 
 	@PostMapping("/numble11/comment/{postid}")
+	@Operation(summary = "댓글 postId로 업로드 메서드", description = "댓글 postId로 업로드 메서드입니다.")
 	public ResponseEntity saveComment(@PathVariable("postid") Long postid,@RequestBody CommentRequest request){
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(new CommentResponse(commentService.saveComment(postid,request)));
 	}
 
 	@GetMapping("/numble11/comment/{postid}")
+	@Operation(summary = "댓글 postId로 가져오기 메서드", description = "댓글 postId로 가져오기 메서드입니다.")
 	public ResponseEntity getCommentPostALl(@PathVariable("postid") Long postid){
 		List<Comment> findCommnets = commentService.findCommentPost(postid);
 		List<CommentPostAllDto> collect = findCommnets.stream()
@@ -48,11 +53,13 @@ public class CommentApiController {
 	}
 
 	@PutMapping("/numble11/comment/{commentid}")
+	@Operation(summary = "댓글 commentId로 수정 메서드", description = "댓글 commentId로 수정 메서드입니다.")
 	public ResponseEntity updateComment(@PathVariable("commentid") Long commentid,@RequestBody CommentRequest request){
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(new CommentResponse(commentService.updateComment(commentid,request)));
 	}
 
 	@DeleteMapping("/numble11/comment/{commentid}")
+	@Operation(summary = "댓글 commentId로 삭제 메서드", description = "댓글 commentId로 삭제 메서드입니다.")
 	public ResponseEntity deleteComment(@PathVariable("commentid") Long id){
 		commentService.deleteComment(id);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body("delete");

@@ -10,6 +10,8 @@ import com.community.numble.app.board.dto.PostDto.PostResult;
 import com.community.numble.app.board.service.MemberService;
 import com.community.numble.app.board.service.PostService;
 import com.community.numble.app.board.service.UploadFileService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -35,6 +37,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequiredArgsConstructor
+@Tag(name = "Post", description = "게시물 api")
 @RequestMapping("/api/v1") //버전명시(이전버전도 사용 분리)
 public class PostApiController {
 
@@ -47,6 +50,7 @@ public class PostApiController {
 
 
 	@GetMapping("/numble11/post")
+	@Operation(summary = "모든게시물 가져오기", description = "모든 게시물을 가져오는 메서드입니다.")
 	public ResponseEntity getAllPost(){
 		List<Post> findPosts = postService.findPost();
 		List<PostAllDto> collect = findPosts.stream()
@@ -57,6 +61,7 @@ public class PostApiController {
 	}
 
 	@GetMapping("/numble11/category")
+	@Operation(summary = "카테고리 가져오기 메서드", description = "카테고리 가져오기 메서드입니다.")
 	public ResponseEntity getAllcategory(){
 		Map<String, Object> enums = new LinkedHashMap<>();
 		Class categoryType = PostCategory.class;
@@ -65,6 +70,7 @@ public class PostApiController {
 	}
 
 	@GetMapping("/numble11/post/{id}")
+	@Operation(summary = "게시물 하나 PostId로 가져오기 메서드", description = "게시물 하나 id로 가져오기 메서드입니다.")
 	public ResponseEntity getPostId(@PathVariable("id") Long id){
 		Post post = postService.findOne(id);
 		PostOneDto postOneDto = new PostOneDto(post.getId(),post.getTitle(),post.getContent(),post.getLocation(),post.getType(),post.getMember().getId(),
@@ -74,6 +80,7 @@ public class PostApiController {
 	}
 
 	@PostMapping("/numble11/post")
+	@Operation(summary = "게시물 업로드 메서드", description = "게시물 업로드 메서드입니다.")
 	public ResponseEntity savePostPhoto(@RequestPart(value = "file",required = false) MultipartFile[] imageFiles,
 		@RequestPart(value = "postinfo") CreatePostPhotoRequest request) {
 
@@ -83,6 +90,7 @@ public class PostApiController {
 	//파일명 파일경로:타입,날짜별 파일타입 저장되는다x른파일이름:UUID바뀐거도 저장 , 확장자 ,파일사이즈,생성날자,수정날짜
 
 	@DeleteMapping("/numble11/post/{id}")
+	@Operation(summary = "게시물 postId로 삭제 메서드", description = "게시물 id로 삭제 메서드입니다.")
 	public ResponseEntity deletePost(@PathVariable("id") Long id){
 		postService.deletePost(id);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body("delete");
@@ -90,6 +98,7 @@ public class PostApiController {
 	}
 
 	@PutMapping("/numble11/post/{id}")
+	@Operation(summary = "게시물 postId로 수정 메서드", description = "게시물 postId로 수정 메서드입니다.")
 	public ResponseEntity updatePost(@PathVariable("id") Long currentid,@RequestPart(value = "file",required = false) MultipartFile[] imageFiles,
 		@RequestPart(value = "postinfo") CreatePostPhotoRequest request){
 
@@ -103,6 +112,7 @@ public class PostApiController {
 		value = "/numble11/postimage/{id}",
 		produces = {MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE}
 	)
+	@Operation(summary = "이미지 하나 imageId로 가져오기 메서드", description = "이미지 하나 imageId로 가져오기 메서드입니다.")
 	public @ResponseBody byte[] getImageWithMediaType(@PathVariable("id") Long imageid) throws IOException {
 
 		InputStream in = this.getClass().getResourceAsStream(uploadFileService.findFilePath(imageid).replace('\\', '/'));
