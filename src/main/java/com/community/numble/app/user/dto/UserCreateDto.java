@@ -5,20 +5,22 @@ import com.community.numble.common.utils.DateUtils;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-@Getter
+@Data
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class UserCreateDto {
 
-    private String username;
+    private String username; // 이메일 계정
 
     private String nickname;
 
     private String password;
+
+    private String passwordConfirm;
 
     private String cellPhone;
 
@@ -31,8 +33,10 @@ public class UserCreateDto {
             .nickname(nickname)
             .password(password)
             .cellPhone(cellPhone)
+            .email(username)
             .location(location)
             .createDate(DateUtils.format(LocalDateTime.now(), "yyyyMMddHHmmss"))
+
             .build();
 
     }

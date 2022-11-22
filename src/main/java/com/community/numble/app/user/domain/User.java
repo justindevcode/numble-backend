@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,6 +39,7 @@ public class User implements UserDetails {
     @Column(nullable = false, unique = true)
     private String nickname;
 
+    @Email
     @Column(nullable = false, unique = true)
     private String username;
 
@@ -56,14 +58,13 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String cellPhone;
 
-    @Column(nullable = false)
-    private String name;
-
     private int score;
 
     private String createDate;
 
     private String updateDate;
+
+    private String emailCheckToken;
     @Transient
     private Collection<GrantedAuthority> authorities;
 
