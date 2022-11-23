@@ -49,7 +49,7 @@ public class PostApiController {
 	//카테고리 api
 
 
-	@GetMapping("/numble11/post")
+	@GetMapping("/post")
 	@Operation(summary = "모든게시물 가져오기", description = "모든 게시물을 가져오는 메서드입니다.")
 	public ResponseEntity getAllPost(){
 		List<Post> findPosts = postService.findPost();
@@ -60,7 +60,7 @@ public class PostApiController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(new PostResult(collect.size(),collect));
 	}
 
-	@GetMapping("/numble11/category")
+	@GetMapping("/category")
 	@Operation(summary = "카테고리 가져오기 메서드", description = "카테고리 가져오기 메서드입니다.")
 	public ResponseEntity getAllcategory(){
 		Map<String, Object> enums = new LinkedHashMap<>();
@@ -69,7 +69,7 @@ public class PostApiController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(enums);
 	}
 
-	@GetMapping("/numble11/post/{id}")
+	@GetMapping("post/{id}")
 	@Operation(summary = "게시물 하나 PostId로 가져오기 메서드", description = "게시물 하나 id로 가져오기 메서드입니다.")
 	public ResponseEntity getPostId(@PathVariable("id") Long id){
 		Post post = postService.findOne(id);
@@ -79,7 +79,7 @@ public class PostApiController {
 
 	}
 
-	@PostMapping("/numble11/post")
+	@PostMapping("/post")
 	@Operation(summary = "게시물 업로드 메서드", description = "게시물 업로드 메서드입니다.")
 	public ResponseEntity savePostPhoto(@RequestPart(value = "file",required = false) MultipartFile[] imageFiles,
 		@RequestPart(value = "postinfo") CreatePostPhotoRequest request) {
@@ -89,7 +89,7 @@ public class PostApiController {
 
 	//파일명 파일경로:타입,날짜별 파일타입 저장되는다x른파일이름:UUID바뀐거도 저장 , 확장자 ,파일사이즈,생성날자,수정날짜
 
-	@DeleteMapping("/numble11/post/{id}")
+	@DeleteMapping("/post/{id}")
 	@Operation(summary = "게시물 postId로 삭제 메서드", description = "게시물 id로 삭제 메서드입니다.")
 	public ResponseEntity deletePost(@PathVariable("id") Long id){
 		postService.deletePost(id);
@@ -97,7 +97,7 @@ public class PostApiController {
 
 	}
 
-	@PutMapping("/numble11/post/{id}")
+	@PutMapping("/post/{id}")
 	@Operation(summary = "게시물 postId로 수정 메서드", description = "게시물 postId로 수정 메서드입니다.")
 	public ResponseEntity updatePost(@PathVariable("id") Long currentid,@RequestPart(value = "file",required = false) MultipartFile[] imageFiles,
 		@RequestPart(value = "postinfo") CreatePostPhotoRequest request){
@@ -109,7 +109,7 @@ public class PostApiController {
 
 
 	@GetMapping(
-		value = "/numble11/postimage/{id}",
+		value = "/postimage/{id}",
 		produces = {MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE}
 	)
 	@Operation(summary = "이미지 하나 imageId로 가져오기 메서드", description = "이미지 하나 imageId로 가져오기 메서드입니다.")
@@ -123,7 +123,7 @@ public class PostApiController {
 
 
 
-//	@PostMapping("/numble11/post")
+//	@PostMapping("/post")
 //	public ResponseEntity savePost(@RequestBody CreatePostRequest request) {
 //		Post post = new Post();
 //		post.setTitle(request.getTitle());

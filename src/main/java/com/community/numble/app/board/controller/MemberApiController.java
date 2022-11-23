@@ -24,7 +24,7 @@ public class MemberApiController {
 
 	private final MemberService memberService;
 
-	@PostMapping("/numble11/members")
+	@PostMapping("/membertest")
 	@Operation(summary = "회원가입 테스트 메서드", description = "회원가입 테스트 메서드입니다.")
 	public ResponseEntity saveMember(@RequestBody CreateMemberRequest request) {
 		Member member = new Member();
@@ -34,7 +34,7 @@ public class MemberApiController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(new CreateMemberResponse(id));
 	}
 
-	@PostMapping("/numble11/members2")
+	@PostMapping("/members2")
 	public CreateMemberResponse saveMemberv2(@RequestBody CreateMemberRequest request) {
 		Member member = new Member();
 		member.setName(request.getName());

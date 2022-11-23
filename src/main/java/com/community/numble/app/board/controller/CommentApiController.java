@@ -35,13 +35,13 @@ public class CommentApiController {
 
 
 
-	@PostMapping("/numble11/comment/{postid}")
+	@PostMapping("/comment/{postid}")
 	@Operation(summary = "댓글 postId로 업로드 메서드", description = "댓글 postId로 업로드 메서드입니다.")
 	public ResponseEntity saveComment(@PathVariable("postid") Long postid,@RequestBody CommentRequest request){
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(new CommentResponse(commentService.saveComment(postid,request)));
 	}
 
-	@GetMapping("/numble11/comment/{postid}")
+	@GetMapping("/comment/{postid}")
 	@Operation(summary = "댓글 postId로 가져오기 메서드", description = "댓글 postId로 가져오기 메서드입니다.")
 	public ResponseEntity getCommentPostALl(@PathVariable("postid") Long postid){
 		List<Comment> findCommnets = commentService.findCommentPost(postid);
@@ -52,13 +52,13 @@ public class CommentApiController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(new CommentResult(collect.size(),collect));
 	}
 
-	@PutMapping("/numble11/comment/{commentid}")
+	@PutMapping("/comment/{commentid}")
 	@Operation(summary = "댓글 commentId로 수정 메서드", description = "댓글 commentId로 수정 메서드입니다.")
 	public ResponseEntity updateComment(@PathVariable("commentid") Long commentid,@RequestBody CommentRequest request){
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(new CommentResponse(commentService.updateComment(commentid,request)));
 	}
 
-	@DeleteMapping("/numble11/comment/{commentid}")
+	@DeleteMapping("/comment/{commentid}")
 	@Operation(summary = "댓글 commentId로 삭제 메서드", description = "댓글 commentId로 삭제 메서드입니다.")
 	public ResponseEntity deleteComment(@PathVariable("commentid") Long id){
 		commentService.deleteComment(id);
