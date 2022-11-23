@@ -17219,3 +17219,5 @@ org.hibernate.PropertyValueException: not-null property references a null or tra
 [21:54:27:3093887] [HikariPool-1 housekeeper]DEBUG com.zaxxer.hikari.pool.HikariPool.fillPool (518) - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
 [21:54:57:3123900] [HikariPool-1 housekeeper]DEBUG com.zaxxer.hikari.pool.HikariPool.logPoolState (421) - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
 [21:54:57:3123900] [HikariPool-1 housekeeper]DEBUG com.zaxxer.hikari.pool.HikariPool.fillPool (518) - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+[21:55:27:3153907] [HikariPool-1 housekeeper]DEBUG com.zaxxer.hikari.pool.HikariPool.logPoolState (421) - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[21:55:27:3153907] [HikariPool-1 housekeeper]DEBUG com.zaxxer.hikari.pool.HikariPool.fillPool (518) - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
