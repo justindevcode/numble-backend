@@ -2,13 +2,14 @@ package com.community.numble.app.user.repository;
 
 
 import com.community.numble.app.user.domain.User;
-import java.util.List;
+
+import java.util.*;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
 
-    List<User> findUserBy(List<Long> idList);
-
+    Optional<User> findByUserId(long userId);
 }

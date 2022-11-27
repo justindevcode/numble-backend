@@ -17,7 +17,7 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-@Table(name="USER_TABLE")
+@Table(name="FOLLOW_TABLE")
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor
 @Entity
@@ -28,7 +28,11 @@ public class Follow {
     private long id;
 
     @NotNull
-    @Column
+    @Column(name = "user_id")
     private long userId;
+
+    @NotNull
+    @Column
+    private long followId;
 
 }

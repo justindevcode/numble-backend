@@ -3,7 +3,6 @@ package com.community.numble.app.follow.controller;
 import com.community.numble.app.follow.dto.FollowDto;
 import com.community.numble.app.follow.service.FollowService;
 import com.community.numble.app.user.domain.User;
-import com.community.numble.app.user.service.UserService;
 import com.community.numble.common.service.ResponseService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +22,6 @@ public class FollowController {
 
     private final FollowService followService;
 
-    private final UserService userService;
-
     @GetMapping("/follow/list")
     public ResponseEntity<?> followList(@AuthenticationPrincipal User user){
 
@@ -37,20 +34,23 @@ public class FollowController {
     @GetMapping("/follower/list")
     public ResponseEntity<?> followerList(@AuthenticationPrincipal User user){
 
-        followService.getFollowerList(user.getUserId());
-        return ResponseEntity.ok(responseService.getSingleResult());
+        List<FollowDto> result = followService.getFollowerList(user.getUserId());
+        return ResponseEntity.ok(responseService.getSingleResult(result));
     }
 
     @PostMapping("/follow/insert")
-    public ResponseEntity<?> insertFollower(FollowDto followDto){
+    public ResponseEntity<?> insertFollower(@AuthenticationPrincipal User user, FollowDto followDto){
 
+        followDto.setFollowId(user.getUserId());
         followService.insertFollow(followDto);
         return ResponseEntity.ok(responseService.getSuccessResult());
 
     }
 
     @PostMapping("/follow/delete")
-    public ResponseEntity<?> deleteFollow(@AuthenticationPrincipal User user){
+    public ResponseEntity<?> deleteFollow(@AuthenticationPrincipal User user, FollowDto followDto){
+        followDto.setUserId(user.getUserId());
+        followService.deleteFollow(followDto);
 
         return ResponseEntity.ok(responseService.getSuccessResult());
 
