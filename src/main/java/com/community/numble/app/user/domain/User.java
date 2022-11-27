@@ -58,6 +58,9 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String cellPhone;
 
+    @Column
+    private String imageCode;
+
     private int score;
 
     private String createDate;
