@@ -43,7 +43,7 @@ public class PostService {
 		postRepository.delete(id);
 	}
 
-	public String createTypeTrn(String type){
+	public String createType(String type){
 		if ("NEW".equals(type)) return "새로 생겼어요";
 		else if("EVENT".equals(type)) return "행사/축제";
 		else if("SALE".equals(type)) return "세일/이벤트";

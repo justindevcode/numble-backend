@@ -2,6 +2,7 @@ package com.community.numble.app.board.dto;
 
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 public class CommentDto {
@@ -31,7 +32,8 @@ public class CommentDto {
 
 	@Data
 	@AllArgsConstructor
-	public static class CommentPostAllDto{
+	@Builder
+	public static class CommentListDto{
 		private Long id;
 		private String content;
 		private String location;
@@ -39,6 +41,7 @@ public class CommentDto {
 		private Long postId;
 		private LocalDateTime createTime;
 		private LocalDateTime modifiedTime;
+
 
 	}
 

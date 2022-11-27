@@ -5,6 +5,7 @@ import com.community.numble.app.board.domain.PostCategory;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -75,6 +76,7 @@ public class PostDto {
 	}
 
 	@Data
+	@Builder
 	@AllArgsConstructor
 	public static class PostOneDto {
 		private Long id;

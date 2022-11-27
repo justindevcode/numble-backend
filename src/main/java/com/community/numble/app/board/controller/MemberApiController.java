@@ -31,7 +31,7 @@ public class MemberApiController {
 		member.setName(request.getName());
 
 		Long id = memberService.join(member);
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(new CreateMemberResponse(id));
+		return ResponseEntity.status(HttpStatus.OK).body(new CreateMemberResponse(id));
 	}
 
 	@PostMapping("/members2")
