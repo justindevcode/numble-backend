@@ -8,12 +8,12 @@ import com.community.numble.common.Auth;
 import com.community.numble.common.response.ResponseMessage;
 import com.community.numble.config.jwt.*;
 import com.community.numble.exception.LoginFailedException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+
+import java.util.*;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.*;
 import org.springframework.security.authentication.*;
 import org.springframework.security.config.annotation.authentication.builders.*;
 import org.springframework.security.core.*;
@@ -23,7 +23,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 @Service("userService")
 @RequiredArgsConstructor
@@ -54,13 +53,15 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
-    public void join(UserCreateDto userCreateDto) {
+    public void register(UserCreateDto userCreateDto) {
+
         userCreateDto.setPassword(passwordEncoder.encode(userCreateDto.getPassword()));
         User user = userCreateDto.toEntity();
         List<Role> roleList = new ArrayList<>();
         roleList.add(Role.builder().role(Auth.ROLE_USER.name()).build());
         user.setRole(roleList);
         userRepository.save(user);
+
     }
 
     @Transactional
@@ -115,6 +116,21 @@ public class UserService implements UserDetailsService {
 
         // 토큰 발급
         return tokenDto;
+    }
+
+    public void updateUserInfo(UserUpdateDto userUpdateDto, long userId) {
+
+        User userInfo = userRepository.findByUserId(userId).orElseThrow();
+        if(StringUtils.isEmpty(userUpdateDto.getNickname())){
+            userInfo.setNickname(userUpdateDto.getNickname());
+        }
+        if(StringUtils.isEmpty(userUpdateDto.getCellPhone())){
+            userInfo.setCellPhone(userUpdateDto.getCellPhone());
+        }
+        if(StringUtils.isEmpty(userUpdateDto.getAddress())){
+            userInfo.setAddress(userUpdateDto.getAddress());
+        }
+        userRepository.save(userInfo);
     }
 }
 

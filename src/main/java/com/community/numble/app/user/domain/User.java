@@ -29,6 +29,9 @@ public class User implements UserDetails {
     @Column(name = "user_id")
     private long userId;
 
+    @Column(nullable = false)
+    private String name;
+
     @Column(nullable = false, unique = true)
     private String nickname;
 
@@ -37,7 +40,7 @@ public class User implements UserDetails {
     private String username;
 
     @Column(nullable = false)
-    private String email;
+    private String birthday;
 
     @Column(nullable = false)
     private String password;
@@ -46,7 +49,7 @@ public class User implements UserDetails {
     private List<Role> role;
 
     @Column(nullable = false)
-    private String location;
+    private String address;
 
     @Column(nullable = false)
     private String cellPhone;
@@ -61,6 +64,8 @@ public class User implements UserDetails {
     private String updateDate;
 
     private String emailCheckToken;
+
+    private String introduce;
 
     @OneToMany
     private List<Follow> followList;
