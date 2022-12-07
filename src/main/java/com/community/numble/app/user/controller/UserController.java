@@ -89,7 +89,9 @@ public class UserController {
     @PostMapping("/update")
     public ResponseEntity<?> infoUpdate(UserUpdateDto userUpdateDto, @AuthenticationPrincipal User user){
 
-        userService.updateUserInfo(userUpdateDto, user.getUserId());
+        userUpdateDto.setId(user.getUserId());
+        userService.updateUserInfo(userUpdateDto);
+
         return ResponseEntity.ok(responseService.getSuccessResult());
     }
 

@@ -1,23 +1,18 @@
 package com.community.numble.app.user.domain;
 
-import java.util.Collection;
-import java.util.List;
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-
+import com.community.numble.app.board.domain.*;
 import com.community.numble.app.follow.domain.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.*;
+import org.springframework.security.core.*;
+import org.springframework.security.core.userdetails.*;
+
+import javax.persistence.Transient;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import java.util.*;
 
 @Builder
 @Getter
-@Setter
 @Table(name="USER_TABLE")
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor
@@ -67,8 +62,12 @@ public class User implements UserDetails {
 
     private String introduce;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Board> boardList;
+
     @OneToMany
     private List<Follow> followList;
+
     @Transient
     private Collection<GrantedAuthority> authorities;
 
@@ -101,6 +100,14 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void setAuthorities(Collection<GrantedAuthority> authorities){
+        this.authorities = authorities;
+    }
+
+    public void setRole(List<Role> role){
+        this.role = role;
     }
 
 }
