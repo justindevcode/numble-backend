@@ -1,17 +1,16 @@
 package com.community.numble.app.board.service;
 
-import com.community.numble.app.board.domain.Post;
-import com.community.numble.app.board.domain.UploadFile;
-import com.community.numble.app.board.dto.PostDto.CreatePostPhotoRequest;
-import com.community.numble.app.board.repository.UploadFileRepository;
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
+import com.community.numble.app.board.domain.*;
+import com.community.numble.app.board.dto.PostDto.*;
+import com.community.numble.app.board.repository.*;
+import lombok.*;
+import org.springframework.stereotype.*;
+import org.springframework.transaction.annotation.*;
+import org.springframework.web.multipart.*;
+
+import java.io.*;
+import java.text.*;
+import java.util.*;
 
 @Service
 @Transactional
@@ -56,7 +55,7 @@ public class UploadFileService {
 		post.setTitle(request.getTitle());
 		post.setContent(request.getContent());
 		post.setLocation(request.getLocation());
-		post.createType(request.getType());
+		//post.createType(request.getType());
 		post.setMember(memberService.findOne(request.getMember()));
 
 		Long id = postService.post(post);
@@ -102,7 +101,7 @@ public class UploadFileService {
 		post.setTitle(request.getTitle());
 		post.setContent(request.getContent());
 		post.setLocation(request.getLocation());
-		post.createType(request.getType());
+		//post.createType(request.getType());
 		post.setMember(memberService.findOne(request.getMember()));
 
 		Long id = postService.post(post);

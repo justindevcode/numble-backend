@@ -1,28 +1,26 @@
 package com.community.numble.app.user.service;
 
-import com.community.numble.app.user.domain.Role;
 import com.community.numble.app.user.domain.User;
+import com.community.numble.app.user.domain.*;
 import com.community.numble.app.user.dto.*;
-import com.community.numble.app.user.repository.UserRepository;
-import com.community.numble.common.Auth;
-import com.community.numble.common.response.ResponseMessage;
+import com.community.numble.app.user.repository.*;
+import com.community.numble.common.*;
+import com.community.numble.common.response.*;
 import com.community.numble.config.jwt.*;
-import com.community.numble.exception.LoginFailedException;
-
-import java.util.*;
-import java.util.stream.Collectors;
-import javax.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
+import com.community.numble.exception.*;
+import lombok.*;
 import org.apache.commons.lang3.*;
 import org.springframework.security.authentication.*;
 import org.springframework.security.config.annotation.authentication.builders.*;
 import org.springframework.security.core.*;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+import org.springframework.security.core.authority.*;
+import org.springframework.security.core.userdetails.*;
+import org.springframework.security.crypto.password.*;
+import org.springframework.stereotype.*;
+
+import javax.transaction.*;
+import java.util.*;
+import java.util.stream.*;
 
 @Service("userService")
 @RequiredArgsConstructor
@@ -118,19 +116,11 @@ public class UserService implements UserDetailsService {
         return tokenDto;
     }
 
-    public void updateUserInfo(UserUpdateDto userUpdateDto, long userId) {
+    public void updateUserInfo(UserUpdateDto userUpdateDto) {
 
-        User userInfo = userRepository.findByUserId(userId).orElseThrow();
-        if(StringUtils.isEmpty(userUpdateDto.getNickname())){
-            userInfo.setNickname(userUpdateDto.getNickname());
-        }
-        if(StringUtils.isEmpty(userUpdateDto.getCellPhone())){
-            userInfo.setCellPhone(userUpdateDto.getCellPhone());
-        }
-        if(StringUtils.isEmpty(userUpdateDto.getAddress())){
-            userInfo.setAddress(userUpdateDto.getAddress());
-        }
-        userRepository.save(userInfo);
+        User user = UserUpdateDto.toEntity(userUpdateDto);
+
+        userRepository.save(user);
     }
 }
 
