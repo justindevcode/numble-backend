@@ -48,12 +48,6 @@ public class Board {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    private List<Comment> comment;
-
-    @OneToMany(mappedBy = "post")
-    private List<PostLike> postLikes;
-
     private String createDate;
 
     private String updateDate;
