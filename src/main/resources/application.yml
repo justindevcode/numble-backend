@@ -2,34 +2,24 @@ spring:
   application:
     name: backend
   profiles:
-    active: local
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ENC(1KX2eCaflj6ajgwm6ldGhgwFIlU1023AkInhSrDpncoPJRMbf8a8Y6qr8rPWTWrU7CeGaV/9sXkuN+0416C42qy5lCZH7s4r371LMMrXpyk=)
-    username: ENC(k4WfV4exwYNosxz0AC0T7El92cK3GWa/)
-    password: ENC(h0Hy9BQqTkAHM2cJQeRV8NHsdYOvAG9ELvwbPlwG+Jo=)
+    active: dev
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         show_sql: true
         format_sql: true
         use_sql_comments: true
     hibernate:
-      ddl-auto: none
-
+      ddl-auto: update
   mail:
     host: smtp.naver.com
-    port: 465
-    username: # 아이디
     properties:
       mail:
         smtp:
           auth: true
         ssl:
           enable: true
-    password: # 비밀번호
-    protocol: smtps
 logging:
   file:
     path: ./log/numble
@@ -37,12 +27,6 @@ logging:
   pattern:
     console: "%logger{36}.%M \\(%line\\) - %msg%n"
     file: "[%d{HH:mm:ss}] %-3level %logger{5} - %msg %n"
-server:
-  servlet:
-    encoding:
-      charset: UTF-8
-      force: true
-
 springdoc:
   api-docs:
     version: openapi_3_0
@@ -51,6 +35,8 @@ springdoc:
     path: /api-doc
   default-consumes-media-type: application/json;charset=UTF-8
   default-produces-media-type: application/json;charset=UTF-8
-
-jwt:
-  secret: ENC(cE7ea+FtMNMnWBG2xx3nc9V2ukSugxeU5/heyGqgQqoNyeuFwv3JCCZfTxTCJfrsL83Lvugw5+QhgnVjWR6flvbJhcz3AqP6EqcbX3hk7kQhld69ZNdemzdatK3lzk7bRb65bo/ILbX527m7uDNOyXY3jD20YssYwljHlOvQi95fO5Cm984RRvb7zJKXRJf+0/5n9n2lsrA=)
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true

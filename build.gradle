@@ -39,7 +39,8 @@ dependencies {
 
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.12'
 
-    implementation 'mysql:mysql-connector-java'
+    implementation 'org.postgresql:postgresql'
+    implementation 'com.h2database:h2'
 
     implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
 
