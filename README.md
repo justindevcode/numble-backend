@@ -4,6 +4,9 @@
 
 개인의 자유를 존중하고 보장하면서 다양한 동네 사람들과 친밀감을 형성할 수 있는 서비스  
 
+### Period  : 2022/11/01 ~ 2022/12/07
+### Stacks : Java,Spring,H2,JPA,mysql
+
 # :page_facing_up: Souce Code
 https://github.com/Numble-2-11/backend  
 
