@@ -1,10 +1,10 @@
-# About
+# :star: About
 | ![image](https://github.com/user-attachments/assets/34379ace-4026-4200-842b-f0cad685a3aa) | ![image (1)](https://github.com/user-attachments/assets/04e67f15-473c-4bca-8519-fd805e5a4c85) |
 |---|---|
 
 개인의 자유를 존중하고 보장하면서 다양한 동네 사람들과 친밀감을 형성할 수 있는 서비스  
 
-# Souce Code
+# :page_facing_up: Souce Code
 https://github.com/Numble-2-11/backend  
 
 # Swagger
